@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="/admin/modal.css">
+<div class="modal-header">
+    <h1>Update item {{item.name}} details in Inventory</h1>
+</div>'
+<div  class="modal-body">
+
+    <div >
+        <form ng-submit="updateitem(item)" ng-controller="adminController">
+
+            <label for="desc">Description for Item</label>
+            <input type="text" id="desc" name="desc" placeholder="Description of Item...." required ng-model="updatedescription">
+
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" placeholder="Price of Item...." min=1 required ng-model="updateprice">
+
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Item Quantity...." min=1 required ng-model="updatequantity">
+
+            <input type="submit" value="Update Details ">
+        </form>
+    </div>
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
