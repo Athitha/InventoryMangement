@@ -22,13 +22,14 @@ Run the following commands:
     
      spring.jpa.hibernate.ddl-auto=**create**
 3. Run the application until the server is up.
-4. After running the application for first time
+4. Navigate to localhost:8080/
+5. After running the application for first time
     run the following statements in SQL
     ```
     revoke all on Inventory.* from 'admin'@'localhost';
     grant select, insert, delete, update on Inventory.* to 'admin'@'localhost';
     ```
-5. Revert the modified line in application.properties
+6. Revert the modified line in application.properties
     spring.jpa.hibernate.ddl-auto=**none**
 
 #Functionality Provided 
