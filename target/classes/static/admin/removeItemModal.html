@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="/admin/modal.css">
+<div class="modal-header">
+    <h3>Select items to be removed from Inventory</h3>
+</div>'
+<div  class="modal-body">
+
+    <div >
+        <form ng-submit="removeItem()" ng-controller="adminController">
+
+            <label >Select Items to be removed</label>
+            <div class="removediv" ng-repeat="item in items" ng-if="item.outofstock == false">
+                <input type="checkbox"  name="item.name" ng-click="itemCheck(item)"> {{item.name}}</input>
+            </div>
+            <input type="submit" value="Remove items ">
+        </form>
+    </div>
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
