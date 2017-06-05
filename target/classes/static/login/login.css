@@ -1,0 +1,23 @@
+body{
+    background-image: url("login.jpg") ;
+    background-property: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container{
+    margin-top: 250px;
+}
+
+.heading{
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: black !important;
+    text-shadow: silver;
+    font-weight: bold;
+    text-align: -webkit-center;
+    font-size: 45px !important;
+}
