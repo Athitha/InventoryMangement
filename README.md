@@ -72,6 +72,8 @@ User Functionalities
 
 <img width="1207" alt="checkout" src="https://cloud.githubusercontent.com/assets/14242897/26781100/b90909e2-49a1-11e7-98ea-f9fca34d611f.png">
 
+**Note:**
+Click refresh button to fetch latest items after you Add, update or remove items
 
 #Technologies Used 
 1. Spring Application
