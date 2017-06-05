@@ -40,7 +40,7 @@ public class InventoryManager {
         newItem.setPrice(item.getPrice());
         newItem.setQuantity(item.getQuantity());
         newItem.setDescription(item.getDescription());
-        newItem.setOutofstock(item.isOutofstock());
+        newItem.setOutofstock(false);
 
        if(!findName(newItem)) {
             this.itemRepository.save(newItem);
@@ -60,7 +60,7 @@ public class InventoryManager {
             newItem.setPrice(item.getPrice());
             newItem.setQuantity(item.getQuantity());
             newItem.setDescription(item.getDescription());
-            newItem.setOutofstock(item.isOutofstock());
+            newItem.setOutofstock(false);
 
             if(findName(newItem)) {
             this.itemRepository.save(newItem);
@@ -92,15 +92,41 @@ public class InventoryManager {
     }
 
     @RequestMapping(value = "/removeItem", method = RequestMethod.POST)
-    public @ResponseBody
-    Response  removeitem(@RequestBody Item item) throws URISyntaxException{
-        this.itemRepository.delete(item);
-        return new Response("ok", "deleted");
+    public  @ResponseBody
+    Response removeItem(@RequestBody Item item) throws URISyntaxException{
+
+        Item newItem = new Item();
+        newItem.setName(item.getName());
+        newItem.setQuantity(0);
+        newItem.setOutofstock(true);
+
+        if(findName(newItem)) {
+            this.itemRepository.save(newItem);
+            nameSet.add(item.getName());
+            return new Response("ok", "Removed from user view");
+        }else {
+            return new Response("error","Item doesn't exist");
+        }
     }
 
-    @RequestMapping(value = "/findAllItems", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllItemsAdmin", method = RequestMethod.GET)
     public @ResponseBody
-    List<Item> finditems(){
+    List<Item> finditemsadmin(){
+        List<Item> itemlist = new ArrayList<Item>();
+
+        for(Item item : itemRepository.findAll()){
+            if(item.getQuantity() >= 0) {
+                nameSet.add(item.getName());
+                itemlist.add(item);
+            }
+        }
+
+        return itemlist;
+    }
+
+    @RequestMapping(value = "/findAllItemsUser", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Item> finditemsuser(){
         List<Item> itemlist = new ArrayList<Item>();
 
         for(Item item : itemRepository.findAll()){
@@ -112,7 +138,6 @@ public class InventoryManager {
 
         return itemlist;
     }
-
     public Boolean findName(Item item) throws URISyntaxException {
 
         Item items = this.itemRepository.findOne(item.getName());

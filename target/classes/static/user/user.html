@@ -2,9 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="/user/user.css">
 </head>
 <body>
-<h1>user page</h1>
+<div id="wrapper" ng-controller="userController">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h2 style="color: greenyellow">User Panel</h2>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right navbar-user" style="padding-right: 40px">
+
+                <li class="dropdown user-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-logout"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3></h3>
+        <hr>
+        <p>Inventory List of items</p>
+        <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+        <div class="row">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span>Inventory Item details</span>
+                        <span  style="float: right"><a style="color: mediumspringgreen" ng-click="refreshuser()"><i class="fa fa-refresh"></i>Refresh</a></span>
+                    </h3>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr class="filters">
+                        <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Price" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Quantity" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Description" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Checkout Item" disabled></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in useritemlist">
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.description}}</td>
+                        <td><a ng-click="checkoutuser(item)"><i class="fa fa-shopping-cart"></i> Checkout</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
